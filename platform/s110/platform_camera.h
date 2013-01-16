@@ -102,4 +102,6 @@
     #undef CAM_CAN_UNLOCK_OPTICAL_ZOOM_IN_VIDEO
     #undef CAM_AF_SCAN_DURING_VIDEO_RECORD
 
+    #define MKDIR_RETURN_ONE_ON_SUCCESS      1    // mkdir() return 1 on success, 0 on fail.
+
 //----------------------------------------------------------
