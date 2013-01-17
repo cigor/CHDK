@@ -377,7 +377,6 @@ void __attribute__((naked,noinline)) sub_F800116C_my() {
       "    LDR     R0, =new_sa \n"	
       "    LDR     R0, [R0] \n"	
 	#endif 
-      "    LDR     R0, =0x28C088 \n" 
       "    LDR     R2, =0x53F15C \n" 
       "    STR     R0, [SP, #8] \n" 
       "    SUB     R0, R2, R0 \n" 
