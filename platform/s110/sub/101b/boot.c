@@ -143,7 +143,7 @@ asm volatile (
 		   So the below call patches the taskcreate functions in RAM to install our
 		   hook
 		*/
-      "    BL      HookIntoTaskCreateFunktion\n"
+//      "    BL      HookIntoTaskCreateFunktion\n"
       "    B       sub_F800038C_my \n" 
 //      "    B       sub_F800038C \n" 
     );
@@ -557,9 +557,9 @@ void __attribute__((naked,noinline)) task_Startup_my() { //TODO: check
       "    BL      sub_F803B674 \n" 
       "    BL      sub_F80396D0 \n" 
       "    BL      sub_F803B990 \n" 
-			"BL      CreateTask_spytask\n"
-	        //"    BL      sub_F8021094 \n"  //"taskCreatePhySw
-		    "BL      taskcreatePhySw_my\n"
+	//		"BL      CreateTask_spytask\n" //TODO: call usual spytask instead of this?
+	  "    BL      sub_F8021094 \n"  //"taskCreatePhySw
+	//	    "BL      taskcreatePhySw_my\n"
       "    BL      sub_F8021094 \n" 
       "    BL      sub_F8036DF8 \n" 
       "    BL      sub_F803B9A8 \n" 
