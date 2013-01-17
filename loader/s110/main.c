@@ -92,7 +92,7 @@ static void __attribute__((noreturn)) shutdown()
          "MSR     CPSR_cf, R1\n"
          :::"r1","r0");
         
-    *p = *p & 0xFFFFFFCF;  // led off.
+	*p = (*p & 0xFFFFFFFE) | 0x1; // Turn off LED
 
     while(1);
 }
@@ -104,13 +104,12 @@ static void __attribute__((noreturn)) panic(int cnt)
 	int i;
 
 	for(;cnt>0;cnt--){
-		*p = (*p & 0x21); // Turn on LED
-
+		*p = (*p & 0xFFFFFFDE) | 0x21; // Turn on LED
 		for(i=0;i<0x200000;i++){
 			asm ("nop\n");
 			asm ("nop\n");
 		}
-		*p = (*p & 0x01); // Turn off LED
+		*p = (*p & 0xFFFFFFFE) | 0x1; // Turn off LED
 		for(i=0;i<0x200000;i++){
 			asm ("nop\n");
 			asm ("nop\n");

@@ -20,13 +20,12 @@ static void __attribute__((naked,noinline)) blink(int cnt)
 	int i;
 
 	for(;cnt>0;cnt--){
-		*p = (*p & 0x21); // Turn on LED
-
+		*p = (*p & 0xFFFFFFDE) | 0x21; // Turn on LED
 		for(i=0;i<0x200000;i++){
 			asm ("nop\n");
 			asm ("nop\n");
 		}
-		*p = (*p & 0x01); // Turn off LED
+		*p = (*p & 0xFFFFFFFE) | 0x1; // Turn off LED
 		for(i=0;i<0x200000;i++){
 			asm ("nop\n");
 			asm ("nop\n");
