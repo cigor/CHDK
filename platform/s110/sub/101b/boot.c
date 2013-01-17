@@ -323,9 +323,9 @@ void __attribute__((naked,noinline)) TaskHookFnc2() {
 void __attribute__((naked,noinline)) sub_F800038C_my() {
 
  if ( (*(int*)0xC022F48C & 0x800000) )
-		*(int*)(0x2E0C+0x8) = 0x200000;  // Playmode "PhySwConfig.c" SX50 FF05CE8C
+		*(int*)(0x2ff0+0x4) = 0x200000;  // Playmode "PhySwConfig.c" S100 f807b174
 	else
-		*(int*)(0x2E0C+0x8) = 0x100000; // Shootingmode
+		*(int*)(0x2ff0+0x4) = 0x100000; // Shootingmode
    asm volatile (
       "    LDR     R0, =0xF8000404 \n" 
       "    MOV     R1, #0 \n" 
