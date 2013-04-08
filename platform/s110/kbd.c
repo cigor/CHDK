@@ -47,6 +47,7 @@ static KeyMap keymap[] = {
     { 0, KEY_ZOOM_IN         ,0x00010000 }, // Found @0xf864bc34, levent 0x02
     { 1, KEY_POWER           ,0x00400000 }, // Found @0xf864bc54, levent 0x100
     { 1, KEY_PLAYBACK        ,0x00800000 }, // Found @0xf864bc5c, levent 0x101
+    { 1, KEY_PRINT           ,0x00800000 }, // = Default ALT button
     { 2, KEY_SHOOT_FULL      ,0x000000c0 }, // Found @0xf864bc6c, levent 0x01
     { 2, KEY_SHOOT_FULL_ONLY ,0x00000080 }, // Found @0xf864bc6c, levent 0x01
     { 2, KEY_SHOOT_HALF      ,0x00000040 }, // Found @0xf864bc64, levent 0x00

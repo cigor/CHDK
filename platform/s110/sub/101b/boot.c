@@ -20,12 +20,12 @@ static void __attribute__((naked,noinline)) blink(int cnt)
 	int i;
 
 	for(;cnt>0;cnt--){
-		*p = (*p & 0xFFFFFFDE) | 0x21; // Turn on LED
+		*p = *p | 0x21; // Turn on LED
 		for(i=0;i<0x200000;i++){
 			asm ("nop\n");
 			asm ("nop\n");
 		}
-		*p = (*p & 0xFFFFFFFE) | 0x1; // Turn off LED
+		*p = (*p & 0xFFFFFFDF) | 0x1; // Turn off LED
 		for(i=0;i<0x200000;i++){
 			asm ("nop\n");
 			asm ("nop\n");
@@ -141,7 +141,7 @@ asm volatile (
       "    BCC     loc_F8000178 \n" 
 		/* Install task hooks via 0x193x is not possible with this new drysos version
 		   So the below call patches the taskcreate functions in RAM to install our
-		   hook
+		   hook TODO: FIXME: find out if this is the case or old style hooks are still possible
 		*/
 //      "    BL      HookIntoTaskCreateFunktion\n"
       "    B       sub_F800038C_my \n" 
@@ -550,16 +550,16 @@ void __attribute__((naked,noinline)) task_Startup_my() { //TODO: check
       "    BL      sub_F8020434 \n" 
       "    BL      sub_F803B458 \n" 
       "    BL      sub_F803B644 \n" 
-      //"    BL      sub_F803B4EC \n" // probably DISKBOOT.BIN
+      //"    BL      sub_F803B4EC \n" // load DISKBOOT.BIN
       "    BL      sub_F803B7BC \n" 
       "    BL      sub_F803B988 \n" 
       "    BL      sub_F803B7B0 \n" 
       "    BL      sub_F803B674 \n" 
       "    BL      sub_F80396D0 \n" 
       "    BL      sub_F803B990 \n" 
-	//		"BL      CreateTask_spytask\n" //TODO: call usual spytask instead of this?
-	  "    BL      sub_F8021094 \n"  //"taskCreatePhySw
-	//	    "BL      taskcreatePhySw_my\n"
+      "    BL      CreateTask_spytask\n"
+//	  "    BL      sub_F8021094 \n"  //"taskCreatePhySw
+      "    BL      taskcreatePhySw_my\n"
       "    BL      sub_F8021094 \n" 
       "    BL      sub_F8036DF8 \n" 
       "    BL      sub_F803B9A8 \n" 
